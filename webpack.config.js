@@ -16,8 +16,7 @@ const getDefaultConfig = env => ({
   entry: ["whatwg-fetch", "@babel/polyfill", "./src/main.ts"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
-    jsonpFunction: "webpackJsonp"
+    filename: "main.js"
   },
   module: {
     rules: [
@@ -33,11 +32,6 @@ const getDefaultConfig = env => ({
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: "url-loader?limit=100000"
       },
-      //{
-      //  test: /\.ts$/,
-      //  use: "ts-loader",
-      //  exclude: /node_modules/
-      //},
       {
         test: /\.tsx?$/,
         loader: "babel-loader",
@@ -73,21 +67,11 @@ const getDefaultConfig = env => ({
       new OptimizeCSSAssetsPlugin({
         filename: "[name].css"
       })
-    ],
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: "styles",
-          test: /\.css|.scss/,
-          chunks: "all",
-          enforce: true
-        }
-      }
-    }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index_template.html"
+      template: "./public/index.html"
     }),
     new DojoWebpackPlugin({
       loaderConfig: require.resolve("./src/loader-config.js"),
@@ -99,7 +83,7 @@ const getDefaultConfig = env => ({
       buildEnvironment: { dojoRoot: "./src", build: true } // used at build time
     }),
     new CopyWebpackPlugin([
-      { from: "./src/index.jsp", to: "index.jsp" }
+      { from: "./public/index.jsp", to: "index.jsp" }
     ]),
     new MiniCssExtractPlugin({
       filename: "[name].css"
