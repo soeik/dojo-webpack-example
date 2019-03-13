@@ -93,7 +93,7 @@ const getDefaultConfig = env => ({
       loaderConfig: require.resolve("./src/loader-config.js"),
       locales: ["de", "en"],
       environment: {
-        dojoRoot: "/rekla/spa",
+        dojoRoot: "/",
         production: env && env.production
       }, // used at run time for non-packed resources (e.g. blank.gif)
       buildEnvironment: { dojoRoot: "./src", build: true } // used at build time
