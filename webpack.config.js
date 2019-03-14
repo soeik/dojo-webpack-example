@@ -7,7 +7,7 @@ require("@babel/polyfill")
 
 const getDefaultConfig = env => ({
   mode: "development",
-  entry: ["whatwg-fetch", "@babel/polyfill", "./src/main.ts"],
+  entry: ["@babel/polyfill", "./src/main.ts"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js"
