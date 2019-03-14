@@ -1,0 +1,17 @@
+Build started: Thu Mar 14 2019 21:02:08 GMT+0300 (Russia TZ 2 Standard Time)
+Build application version: 1.15.0 (d545ad7)
+Messages:
+info(107) Package Version:
+	package: dojo; version: 1.15.0
+	package: util; version: 1.15.0
+warn(209) Missing or empty package.json.
+	filename: C:/projects/dojo-webpack/node_modules/dojo-util/build/package.json
+warn(226) A package without a profile could throw errors or warnings.
+	package: dojo-util
+Layer Contents:
+
+
+Process finished normally
+	errors: 0
+	warnings: 2
+	build time: 0.22 seconds

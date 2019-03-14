@@ -1,6 +1,6 @@
 {
 	"name": "dojo-webpack-example",
-	"version": "1.15.0",
+	"version": "0.0.5",
 	"description": "",
 	"dependencies": {
 		"@babel/polyfill": "^7.2.5",
