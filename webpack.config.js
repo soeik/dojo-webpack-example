@@ -1,12 +1,6 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
 const DojoWebpackPlugin = require("dojo-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
-const CompressionPlugin = require("compression-webpack-plugin")
-const TerserPlugin = require("terser-webpack-plugin")
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-//const webpack = require("webpack")
 const path = require("path")
 
 require("@babel/polyfill")
@@ -21,58 +15,19 @@ const getDefaultConfig = env => ({
   module: {
     rules: [
       {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          MiniCssExtractPlugin.loader, // creates style nodes from JS strings
-          "css-loader", // translates CSS into CommonJS
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
-        ]
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: "url-loader?limit=100000"
-      },
-      {
         test: /\.tsx?$/,
         loader: "babel-loader",
         exclude: /node_modules/
-      },
-      {
-        test: /\.js$/,
-        use: ["source-map-loader"],
-        enforce: "pre"
-      },
-
+      }
     ]
   },
   resolve: {
-    extensions: [".ts", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js"]
   },
   resolveLoader: {
     modules: ["node_modules"]
   },
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        cache: true,
-        sourceMap: true,
-        extractComments: true,
-        terserOptions: {
-          compress: {
-            drop_console: true
-          }
-        }
-      }),
-      new OptimizeCSSAssetsPlugin({
-        filename: "[name].css"
-      })
-    ]
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html"
-    }),
     new DojoWebpackPlugin({
       loaderConfig: require.resolve("./src/loader-config.js"),
       locales: ["de", "en"],
@@ -83,14 +38,9 @@ const getDefaultConfig = env => ({
       buildEnvironment: { dojoRoot: "./src", build: true } // used at build time
     }),
     new CopyWebpackPlugin([
-      { from: "./public/index.jsp", to: "index.jsp" }
-    ]),
-    new MiniCssExtractPlugin({
-      filename: "[name].css"
-    }),
-    new CompressionPlugin({
-      test: /\.js(\?.*)?$/i
-    })
+      { from: "./public/index.jsp", to: "index.jsp" },
+      { from: "./public/index.html", to: "index.html" }
+    ])
   ]
 })
 
